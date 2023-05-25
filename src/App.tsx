@@ -31,40 +31,19 @@ export const App = () => {
 		setTodos((todos) => [newTodo, ...todos]);
 		setText('');
 	};
-	// タスク編集のコールバック
-	const handleEdit = (id: number, value: string) => {
+	const handleTodo = <K extends keyof Todo, V extends Todo[K]>(
+		id: number,
+		key: K,
+		value: V
+	) => {
 		setTodos((todos) => {
 			const newTodos = todos.map((todo) => {
 				if (todo.id === id) {
-					return {...todo, value: value};
+					return { ...todo, [key]: value};
 				}
-				return todo;
-			});
-			
-			return newTodos;
-		});
-	};
-	// タスク状況（完了/未完）のコールバック
-	const handleCheck = (id: number, checked: boolean) => {
-		setTodos((todos) => {
-			const newTodos = todos.map((todo) => {
-				if (todo.id === id) {
-					return {...todo, checked};
+				else {
+					return todo;
 				}
-				return todo;
-			});
-
-			return newTodos;
-		});
-	};
-	// 削除のコールバック
-	const handleRemove = (id: number, removed: boolean) => {
-		setTodos((todos) => {
-			const newTodos = todos.map((todo) => {
-				if (todo.id === id) {
-					return {...todo, removed};
-				}
-				return todo;
 			});
 
 			return newTodos;
@@ -139,15 +118,15 @@ export const App = () => {
 								type="checkbox"
 								disabled={todo.removed}
 								checked={todo.checked}
-								onChange={() => handleCheck(todo.id, !todo.checked)}
+								onChange={() => handleTodo(todo.id, 'checked', !todo.checked)}
 							/>
 							<input 
 								type="text"
 								disabled={todo.checked || todo.removed}
 								value={todo.value}
-								onChange={(e) => handleEdit(todo.id, e.target.value)}
+								onChange={(e) => handleTodo(todo.id, 'value', e.target.value)}
 							/>
-							<button onClick={() => handleRemove(todo.id, !todo.removed)}>
+							<button onClick={() => handleTodo(todo.id, 'removed', !todo.removed)}>
 								{todo.removed ? '復元' : '削除'}
 							</button>
 						</li>
