@@ -1,0 +1,23 @@
+{
+    "settings": {
+        // React のバージョンは自動判定とする
+        "react": {
+            "version": "detect"
+        }
+    },
+    "extends": [
+        // ルールセットは基本的に "recommended" （推奨）のみを使う
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:react/recommended",
+        "plugin:react-hooks/recommended",
+        "prettier"
+    ],
+    // 不要なルールを適用除外とする
+    "rules": {
+        // TypeScript では props の型定義が必須なので不要
+        "react/prop-types": "off",
+        // "tsconfig.json" で "jsx: react-jsx" なので不要
+        "react/react-in-jsx-scope": "off"
+    }
+}
