@@ -13,6 +13,7 @@ import { AlertDialog } from './AlertDialog';
 import { ActionButton } from './ActionButton';
 
 import localforage from 'localforage';
+import { isTodos } from './lib/isTodos';
 
 const theme = createTheme({
   palette: {
@@ -115,6 +116,12 @@ export const App = () => {
   useEffect(() => {
     localforage.setItem('todo-20200101', todos);
   }, [todos]);
+
+  useEffect(() => {
+    localforage
+      .getItem('todo-20200101')
+      .then((values) => isTodos(values) && setTodos(values));
+  }, []);
 
   return (
     <ThemeProvider theme={theme}>
