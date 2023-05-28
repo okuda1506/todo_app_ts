@@ -12,7 +12,6 @@ import { FormDialog } from './FormDialog';
 import { AlertDialog } from './AlertDialog';
 import { ActionButton } from './ActionButton';
 
-// localforage をインポート
 import localforage from 'localforage';
 
 const theme = createTheme({
