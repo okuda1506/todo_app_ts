@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import GlobalStyles from '@mui/material/GlobalStyles';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -11,6 +11,9 @@ import { TodoItem } from './TodoItem';
 import { FormDialog } from './FormDialog';
 import { AlertDialog } from './AlertDialog';
 import { ActionButton } from './ActionButton';
+
+// localforage をインポート
+import localforage from 'localforage';
 
 const theme = createTheme({
   palette: {
@@ -103,6 +106,16 @@ export const App = () => {
   const handleSort = (filter: Filter) => {
     setFilter(filter);
   };
+
+  useEffect(() => {
+    localforage
+      .getItem('todo-20200101')
+      .then((values) => setTodos(values as Todo[]));
+  }, []);
+
+  useEffect(() => {
+    localforage.setItem('todo-20200101', todos);
+  }, [todos]);
 
   return (
     <ThemeProvider theme={theme}>
