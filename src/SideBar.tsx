@@ -110,7 +110,7 @@ export const SideBar = (props: Props) => (
             <ListItemIcon>
               <Icon>share</Icon>
             </ListItemIcon>
-            <ListItemText secondary="このアプリ共有" />
+            <ListItemText secondary="このアプリを共有" />
           </ListItemButton>
         </ListItem>
       </List>
