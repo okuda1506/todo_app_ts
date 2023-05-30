@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 
+import localforage from 'localforage';
+
 import GlobalStyles from '@mui/material/GlobalStyles';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { indigo, pink } from '@mui/material/colors';
@@ -12,7 +14,6 @@ import { FormDialog } from './FormDialog';
 import { AlertDialog } from './AlertDialog';
 import { ActionButton } from './ActionButton';
 
-import localforage from 'localforage';
 import { isTodos } from './lib/isTodos';
 
 const theme = createTheme({
@@ -110,18 +111,12 @@ export const App = () => {
   useEffect(() => {
     localforage
       .getItem('todo-20200101')
-      .then((values) => setTodos(values as Todo[]));
+      .then((values) => isTodos(values) && setTodos(values));
   }, []);
 
   useEffect(() => {
     localforage.setItem('todo-20200101', todos);
   }, [todos]);
-
-  useEffect(() => {
-    localforage
-      .getItem('todo-20200101')
-      .then((values) => isTodos(values) && setTodos(values));
-  }, []);
 
   return (
     <ThemeProvider theme={theme}>

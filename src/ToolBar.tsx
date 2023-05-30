@@ -10,7 +10,6 @@ type Props = {
   onToggleDrawer: () => void;
 };
 
-// ※のちのユニットテスト用にエクスポートしておく
 export const translator = (arg: Filter) => {
   switch (arg) {
     case 'all':
@@ -20,7 +19,7 @@ export const translator = (arg: Filter) => {
     case 'checked':
       return '完了したタスク';
     case 'removed':
-      return 'ゴミ箱';
+      return 'ごみ箱';
     default:
       return 'TODO';
   }
@@ -40,7 +39,7 @@ export const ToolBar = (props: Props) => (
         >
           <Icon>menu</Icon>
         </IconButton>
-        <Typography>{props.filter}</Typography>
+        <Typography>{translator(props.filter)}</Typography>
       </Toolbar>
     </AppBar>
   </Box>
