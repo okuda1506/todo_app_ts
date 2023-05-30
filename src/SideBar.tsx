@@ -57,7 +57,7 @@ export const SideBar = (props: Props) => (
         <DrawerAvatar>
           <Icon>create</Icon>
         </DrawerAvatar>
-        <p>TODO v{pjson.version}</p>
+        <p>TODO App</p>
       </DrawerHeader>
       <List>
         <ListItem disablePadding>
