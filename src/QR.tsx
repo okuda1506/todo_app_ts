@@ -16,6 +16,6 @@ type Props = {
 
 export const QR = (props: Props) => (
   <TodoBackdrop open={props.open} onClick={props.onClose}>
-    <QRCode value="https://todo-app-ts-ecru.vercel.app/" />
+    <QRCode value="https://todo-app-ts-ecru.vercel.ap/" />
   </TodoBackdrop>
 );
